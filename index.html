@@ -33,9 +33,22 @@
 </head>
   <body class="bg-slate-900 text-white">
     <div id="root"></div>
-    <script type="text/babel" data-presets="react,typescript">
-      // Dynamically import the main entry point to ensure it's treated as a module.
-      import('./index.tsx');
+    <script type="text/babel" data-presets="react,typescript" data-type="module">
+      import React from 'react';
+      import ReactDOM from 'react-dom/client';
+      import App from './App.tsx';
+
+      const rootElement = document.getElementById('root');
+      if (!rootElement) {
+        throw new Error("Could not find root element to mount to");
+      }
+
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
     </script>
   <script type="module" src="/index.tsx"></script>
 </body>
